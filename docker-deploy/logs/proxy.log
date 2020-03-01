@@ -1,0 +1,18 @@
+0: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.109.113.20 @ Sat, 29 Feb 2020 03:03:24 GMT
+0: not in cache
+0: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+1: "GET http://detectportal.firefox.com/success.txt HTTP/1.1" from 50.226.171.2 @ Sat, 29 Feb 2020 03:03:25 GMT
+1: not in cache
+1: Requesting "GET http://detectportal.firefox.com/success.txt HTTP/1.1" from detectportal.firefox.com
+1: Received "HTTP/1.1 200 OK" from detectportal.firefox.com
+1: not cacheable because response or request contain no-store
+1: Responding "HTTP/1.1 200 OK"
+2: "GET http://detectportal.firefox.com/success.txt?ipv4 HTTP/1.1" from 50.226.171.2 @ Sat, 29 Feb 2020 03:03:25 GMT
+2: not in cache
+2: Requesting "GET http://detectportal.firefox.com/success.txt?ipv4 HTTP/1.1" from detectportal.firefox.com
+2: Received "HTTP/1.1 200 OK" from detectportal.firefox.com
+2: not cacheable because response or request contain no-store
+2: Responding "HTTP/1.1 200 OK"
+0: Received "HTTP/1.1 200 OK" from www.httpwatch.com
+0: not cacheable because response or request contain no-store
+0: Responding "HTTP/1.1 200 OK"
