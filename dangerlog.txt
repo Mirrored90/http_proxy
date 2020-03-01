@@ -1,0 +1,16 @@
+1. HTTP Protocol
+Our system doesn’t strictly follow the all response rules specified in RFC.
+For failed function call recv and send, we simply 
+	* return status 400 response if receive bad request or fail to receive request from user.
+	* return status 502 for the bad response received from remote host.
+This may cause some problems for the client side, if the browser need more detail based on the specific status code.
+
+2. Error handling
+* For bad connection, bad send and receive, we will send the corresponding status line response (based on the point#1) back to the client, then simply ends the thread.
+Plus, we don’t use any dynamic allocated, and it ends at No-throw level error handling.
+* In the implementation of our own receive and send function, we use the C style abstraction - use the return value to specify the execution status. 
+Although I don’t feel the advantages of C++ exception in this case, maybe we should try to use more C++ exception more.
+
+3. Concurrency
+In terms of concurrency, we use the muti-thread to handle requests.
+To avoid race condition, we use mutux for the cache.

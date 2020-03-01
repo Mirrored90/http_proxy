@@ -1,0 +1,113 @@
+All following testcases are tested with the help of Firefox. Please set the
+proxy port number to 12345 in Firefox.
+
+1. https://www.youtube.com
+Explanation:
+  Open Firefox and go to this website. This is a https website, which can test
+  CONNECT. You can see the webpage is loaded smoothly, and videos are played
+  normally.
+Sample log:
+  0: "CONNECT www.youtube.com:443 HTTP/1.1" from 174.109.113.20 @ Fri, 28 Feb
+  2020 01:23:18 GMT
+
+2. http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx
+Explanation:
+  Open Firefox and go to this website. This is a http website, which can test
+  GET and chunked transfering. After a secs loding, we can see a picture is
+  displayed, indicating our proxy can handle chunked transfering perfectly.
+Sample log:
+  0: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/
+  1.1" from 174.109.113.20 @ Fri, 28 Feb 2020 01:48:17 GMT
+  0: not in cache
+  0: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.
+  aspx HTTP/1.1" from www.httpwatch.com
+  0: Received "HTTP/1.1 200 OK" from www.httpwatch.com
+  0: not cacheable because response or request contain no-store
+  0: Responding "HTTP/1.1 200 OK"
+
+3. http://people.duke.edu/~bmr23/ece568/slides/ERSS_06_Exns_0.pdf
+Explanation:
+  Open Firefox and go to this website. This is a http website, which can test
+  GET and large message body receiving. The PDF is loaded smoothly, indicating
+  our proxy can receive and send large message body perfectly.
+Sample log:
+  3: "GET http://people.duke.edu/~bmr23/ece568/slides/ERSS_06_Exns_0.pdf HTTP/
+  1.1" from 174.109.113.20 @ Fri, 28 Feb 2020 01:52:22 GMT
+  3: not in cache
+  3: Requesting "GET http://people.duke.edu/~bmr23/ece568/slides/ERSS_06_Exns_
+  0.pdf HTTP/1.1" from people.duke.edu
+  3: Received "HTTP/1.1 200 OK" from people.duke.edu
+  3: not cacheable because response or request contain no-store
+
+4. http://scratchpads.eu/
+Explanation:
+  Open Firefox and go to this website. This is a http website, which can test
+  GET and cache. Go to this website twice. The first time, the response is from
+  website sever, and it is store in our cache. For second time, as it is the
+  smae request, instead of requesting from original website server, the proxy
+  fetches the response form cache and send back to client.
+Sample log:
+  0: "GET http://scratchpads.eu/explore HTTP/1.1" from 174.109.113.20 @ Fri, 28
+  Feb 2020 02:11:07 GMT
+  0: not in cache
+  0: Requesting "GET http://scratchpads.eu/explore HTTP/1.1" from scratchpads.eu
+  0: Received "HTTP/1.1 200 OK" from scratchpads.eu
+  0: cached, expires at Fri, 28 Feb 2020 04:23:05 GMT
+  0: Responding "HTTP/1.1 200 OK"
+  1: "GET http://scratchpads.eu/explore HTTP/1.1" from 174.109.113.20 @ Fri, 28
+  Feb 2020 02:11:09 GMT
+  1: in cache, valid
+  1: Responding "HTTP/1.1 200 OK"
+
+5. http://www.gov.cn/
+Explanation:
+  Open Firefox and go to this website. This is a http website, which can test
+  GET and ability of handling a large number of request at same time. The webpage
+  can be loaded smoothly. All picures and passages are shown as normal.
+Sample log:
+  0: "GET http://www.gov.cn/ HTTP/1.1" from 174.109.113.20 @ Fri, 28 Feb 2020 02:
+  17:17 GMT
+  0: not in cache
+  0: Requesting "GET http://www.gov.cn/ HTTP/1.1" from www.gov.cn
+  0: Received "HTTP/1.1 200 OK" from www.gov.cn
+  0: not cacheable because response or request contain no-store
+  0: Responding "HTTP/1.1 200 OK"
+  1: "GET http://ysp.www.gov.cn/013582404bd78ad3c016b8fffefe6a9a/allmobilize.min.js
+  HTTP/1.1" from 174.109.113.20 @ Fri, 28 Feb 2020 02:17:18 GMT
+  1: not in cache
+  2: "GET http://www.gov.cn/govweb/xhtml/2016gov/css/common.css HTTP/1.1" from 174.
+  109.113.20 @ Fri, 28 Feb 2020 02:17:18 GMT
+  2: not in cache
+  3: "GET http://www.gov.cn/govweb/xhtml/2016gov/css/index_flexslider.css HTTP/1.1"
+  from 174.109.113.20 @ Fri, 28 Feb 2020 02:17:18 GMT
+  3: not in cache
+  4: "GET http://www.gov.cn/govweb/xhtml/2016gov/css/base.css HTTP/1.1" from 174.10
+  9.113.20 @ Fri, 28 Feb 2020 02:17:18 GMT
+  4: not in cache
+  5: "GET http://www.gov.cn/govweb/xhtml/2016gov/css/zwlb/index_new_scroll.css HTTP
+  /1.1" from 174.109.113.20 @ Fri, 28 Feb 2020 02:17:18 GMT
+  5: not in cache
+
+6. http://httpbin.org/forms/post
+Explanation:
+  Open Firefox and go to this website. This is a http website, which can test
+  POST. After submitting the form, the result page is shown successfully, indicating
+  our proxy can handle POST request perfectly.
+Sample log:
+  3: "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from 174.109.113.20 @ Fri,
+  28 Feb 2020 02:33:48 GMT
+  4: "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from 174.109.113.20 @ Fri,
+  28 Feb 2020 02:33:48 GMT
+  5: "GET http://httpbin.org/favicon.ico HTTP/1.1" from 174.109.113.20 @ Fri, 28 Feb
+  2020 02:33:48 GMT
+  5: not in cache
+  5: Requesting "GET http://httpbin.org/favicon.ico HTTP/1.1" from httpbin.org
+  5: Received "HTTP/1.1 404 NOT FOUND" from httpbin.org
+  5: not cacheable because response or request contain no-store
+  5: Responding "HTTP/1.1 404 NOT FOUND"
+  6: "POST http://httpbin.org/post HTTP/1.1" from 174.109.113.20 @ Fri, 28 Feb 2020
+  02:34:08 GMT
+  6: Requesting "POST http://httpbin.org/post HTTP/1.1" from httpbin.org
+  6: Received "HTTP/1.1 200 OK" from httpbin.org
+  6: not cacheable because response or request contain no-store
+  6: Responding "HTTP/1.1 200 OK"
